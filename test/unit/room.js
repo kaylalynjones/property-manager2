@@ -22,7 +22,7 @@ describe('Room', function(){
   describe('#area', function() {
     it('should calculate the area of a room', function() {
       var r1 = new Room('living', 12, 12);
-     
+
       expect(r1.area()).to.equal(144);
     });
   });
@@ -30,16 +30,16 @@ describe('Room', function(){
   describe('#cost', function() {
     it('should calculate the cost of a room', function() {
       var r2 = new Room('bedroom', 8, 10);
-     
+
       expect(r2.cost()).to.equal(8 * 10 * 5);
     });
   });
-  
+
   describe('#isBedroom', function(){
     it('should determine if room is a bedroom', function(){
       var r1 = new Room('living', 12, 12);
       var r2 = new Room('bedroom', 8, 10);
-      
+
       expect(r1.isBedroom()).to.be.false;
       expect(r2.isBedroom()).to.be.true;
     });
