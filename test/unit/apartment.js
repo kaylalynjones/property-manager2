@@ -70,4 +70,13 @@ describe('Apartment', function() {
       expect(a1.cost()).to.equal(13375);
     });
   });
+  describe('#revenue', function() {
+    it('should calculate the revenue from an occupied apt', function(){
+      expect(a1.revenue()).to.equal(5350);
+    });
+    it('should not calculate the revenue from an unoccupied apt', function(){
+      expect(a2.revenue()).to.equal(0);
+    });
+    //area of apartment * 7 - cost of apartment
+  });
 });

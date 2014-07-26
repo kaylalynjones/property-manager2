@@ -36,4 +36,11 @@ Apartment.prototype.cost = function(){
   return cost;
 };
 
+Apartment.prototype.revenue = function(){
+  if(!this.renters.length){return 0;}
+
+  var rent = this.area() * 7;
+  var rev = rent - this.cost();
+  return rev;
+};
 module.exports = Apartment;
