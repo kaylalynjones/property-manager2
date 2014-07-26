@@ -60,4 +60,14 @@ describe('Apartment', function() {
       expect(a1._id).to.be.instanceof(Mongo.ObjectID);
     });
   });
+  describe('#area', function(){
+    it('should calculate the area of an apartment', function(){
+      expect(a1.area()).to.equal(2675);
+    });
+  });
+  describe('#cost', function() {
+    it('should calculate the cost of an apartment', function() {
+      expect(a1.cost()).to.equal(13375);
+    });
+  });
 });
