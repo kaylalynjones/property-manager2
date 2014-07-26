@@ -38,4 +38,12 @@ Renter.prototype.payRent = function(amt){
 
 };
 
+Renter.prototype.party = function(){
+  var noise = Math.floor(Math.random() * 10) + 1;
+
+  if (noise > 8) {
+    this._isEvicted = true;
+  }
+};
+
 module.exports = Renter;

@@ -48,4 +48,27 @@ describe('Renter', function(){
       expect(miguel._cash).to.equal(200);
     });
   });
+
+  describe('#party', function(){
+    it('should allow the renter to party and not get evicted', function(){
+      var miguel = new Renter('Miguel', 26, 'M', 'Bartender');
+      miguel._isEvicted = false;
+      while(true){
+        miguel.party();
+        if(!miguel._isEvicted){break;}
+      }
+
+      expect(miguel._isEvicted).to.be.false;
+    });
+    it('should allow the renter to party but unfortunately get evicted', function(){
+      var miguel = new Renter('Miguel', 26, 'M', 'Bartender');
+      miguel._isEvicted = false;
+      while(true){
+        miguel.party();
+        if(miguel._isEvicted){break;}
+      }
+
+      expect(miguel._isEvicted).to.be.true;
+    });
+  });
 });
