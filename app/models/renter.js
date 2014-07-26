@@ -23,9 +23,17 @@ Renter.prototype.work = function() {
       break;
     case 'Flight Attendant':
       this._cash += (Math.floor(Math.random() * 4001) + 1000).toFixed(2);
-      break;
-    default:
-      console.log('does not have a job');
+  }
+};
+
+Renter.prototype.payRent = function(amt){
+  if(this._isEvicted){return;}
+
+  if(this._cash < amt){
+    this._isEvicted = true;
+    return;
+  } else {
+    this._cash -= amt;
   }
 
 };
