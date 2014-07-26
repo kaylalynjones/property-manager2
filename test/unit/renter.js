@@ -23,10 +23,19 @@ describe('Renter', function(){
 
   describe('#work', function() {
     it('should give the renter some cash', function() {
-      var miguel = new Renter('Miguel', 26, 'M', 'Bartender');
-      miguel._cash = 0.0; //broke
-      miguel.work();
-      expect(miguel._cash).to.be.within(2000, 4000);
+      var jobs = [
+        { title: 'Coder', minPay: 5000, maxPay: 7000 },
+        { title: 'Bartender', minPay: 2000, maxPay: 4000 },
+        { title: 'SEO Wizard', minPay: 5000, maxPay: 7000 },
+        { title: 'Flight Attendant', minPay: 1000, maxPay: 5000 }
+      ];
+
+      for (var i=0; i<jobs.length; i++) {
+        var miguel = new Renter('Miguel', 26, 'M', jobs[i].title);
+        miguel._cash = 0.0; //broke
+        miguel.work();
+        expect(miguel._cash).to.be.within(jobs[i].minPay, jobs[i].maxPay);
+      }
     });
   });
 
@@ -51,20 +60,24 @@ describe('Renter', function(){
 
   describe('#party', function(){
     it('should allow the renter to party and not get evicted', function(){
-      var miguel = new Renter('Miguel', 26, 'M', 'Bartender');
-      miguel._isEvicted = false;
+      var miguel;
       while(true){
-        miguel.party();
+        miguel = new Renter('Miguel', 26, 'M', 'Bartender');
+        miguel._isEvicted = false;
+        console.log(miguel.party());
+        //miguel.party();
         if(!miguel._isEvicted){break;}
       }
 
       expect(miguel._isEvicted).to.be.false;
     });
     it('should allow the renter to party but unfortunately get evicted', function(){
-      var miguel = new Renter('Miguel', 26, 'M', 'Bartender');
-      miguel._isEvicted = false;
+      var miguel;
       while(true){
-        miguel.party();
+        miguel = new Renter('Miguel', 26, 'M', 'Bartender');
+        miguel._isEvicted = false;
+        console.log(miguel.party());
+        //miguel.party();
         if(miguel._isEvicted){break;}
       }
 

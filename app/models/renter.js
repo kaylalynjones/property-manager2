@@ -44,6 +44,7 @@ Renter.prototype.party = function(){
   if (noise > 8) {
     this._isEvicted = true;
   }
+  return noise;
 };
 
 module.exports = Renter;
