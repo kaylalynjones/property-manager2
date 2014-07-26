@@ -1,6 +1,6 @@
 'use strict';
 var MongoClient = require('mongodb').MongoClient;
-function connect(name, cb){
+function connection(name, cb){
   var url = 'mongodb://localhost/' + name;
   MongoClient.connect(url, function(err, db){
     global.mongodb = db;
@@ -8,4 +8,4 @@ function connect(name, cb){
   });
 }
 
-module.exports = connect;
+module.exports = connection;

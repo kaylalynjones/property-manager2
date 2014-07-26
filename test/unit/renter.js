@@ -64,8 +64,7 @@ describe('Renter', function(){
       while(true){
         miguel = new Renter('Miguel', 26, 'M', 'Bartender');
         miguel._isEvicted = false;
-        console.log(miguel.party());
-        //miguel.party();
+        miguel.party();
         if(!miguel._isEvicted){break;}
       }
 
@@ -76,8 +75,7 @@ describe('Renter', function(){
       while(true){
         miguel = new Renter('Miguel', 26, 'M', 'Bartender');
         miguel._isEvicted = false;
-        console.log(miguel.party());
-        //miguel.party();
+        miguel.party();
         if(miguel._isEvicted){break;}
       }
 
