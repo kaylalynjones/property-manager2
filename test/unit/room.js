@@ -17,10 +17,19 @@ describe('Room', function(){
       expect(room.width).to.equal(35);
     });
   });
-  describe('#area', function(){
-    it('should calculate the area of a room', function(){
+
+  describe('#area', function() {
+    it('should calculate the area of a room', function() {
       var r1 = new Room('living', 12, 12);
       expect(r1.area()).to.equal(144);
+    });
+  });
+
+  describe('#cost', function() {
+    it('should calculate the cost of a room', function() {
+      var room = new Room('bedroom', 8, 10);
+
+      expect(room.cost()).to.equal(8 * 10 * 5);
     });
   });
 });
