@@ -31,9 +31,10 @@ Renter.prototype.payRent = function(amt){
 
   if(this._cash < amt){
     this._isEvicted = true;
-    return;
+    return 0;
   } else {
     this._cash -= amt;
+    return amt;
   }
 
 };

@@ -79,4 +79,45 @@ describe('Apartment', function() {
     });
     //area of apartment * 7 - cost of apartment
   });
+  describe('#isAvailable', function(){
+    it('should inform whether a bedroom is available for rent', function(){
+      expect(a1.isAvailable()).to.be.true;
+    });
+    it('should inform that there are no available bedrooms', function(){
+      var jill = new Renter('Jill', 25, 'f', 'bartender');
+      a1.renters.push(jill);
+      expect(a1.isAvailable()).to.be.false;
+    });
+  });
+  describe('#purge', function() {
+    it('should remove all evicted renters from the apartment', function() {
+      a1.renters[1]._isEvicted = true; //evict amy
+      a1.purge();
+
+      expect(a1.renters).to.have.length(1);
+    });
+  });
+  describe('#collectRent', function(){
+    it('should take cash from renters', function() {
+      a1.renters[0]._cash = 20000;
+      a1.renters[1]._cash = 20000;
+
+      expect(a1.collectRent()).to.equal(18725);
+      expect(a1.renters[0]._isEvicted).to.be.false;
+      expect(a1.renters[1]._isEvicted).to.be.false;
+    });
+    it('should evict renters that are unable to pay rent', function() {
+      var jill = new Renter('Jill', 25, 'f', 'bartender');
+      var bob = new Renter('Bob', 22, 'M', 'Coder');
+      a2.renters.push(bob);
+      a2.renters.push(jill);
+      
+      a2.renters[0]._cash = 200;
+      a2.renters[1]._cash = 20000;
+      expect(a2.collectRent()).to.equal(14350/2);
+      expect(a2.renters[0]._cash).to.equal(200);
+      expect(a2.renters[0]._isEvicted).to.be.true;
+      expect(a2.renters[1]._isEvicted).to.be.false;
+    });
+  });
 });

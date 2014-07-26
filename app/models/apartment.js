@@ -36,11 +36,53 @@ Apartment.prototype.cost = function(){
   return cost;
 };
 
+Apartment.prototype.rent = function(){
+  return this.area() * 7;
+};
+
 Apartment.prototype.revenue = function(){
   if(!this.renters.length){return 0;}
 
-  var rent = this.area() * 7;
-  var rev = rent - this.cost();
+  var rev = this.rent() - this.cost();
   return rev;
 };
+
+Apartment.prototype.isAvailable = function() {
+  var availableRooms = 0;
+  for (var i=0; i<this.rooms.length; i++) {
+    if (this.rooms[i].isBedroom()) {
+      availableRooms++;
+    }
+  }
+  if (availableRooms > this.renters.length) {
+    return true;
+  }
+
+  return false;
+};
+
+Apartment.prototype.purge = function(){
+  //var temp = [];
+  //for(var i=0; i<this.renters.length; i++){
+    //if(!this.renters[i]._isEvicted){
+      //temp.push(this.renters[i]);
+    //}
+  //}
+  //this.renters = temp;
+
+  this.renters = this.renters.filter(function(renter) {
+    return !renter._isEvicted;
+  });
+};
+
+Apartment.prototype.collectRent = function(){
+  var rent = this.rent()/this.renters.length;
+  var amtCollected = 0;
+
+  for(var i=0; i<this.renters.length; i++){
+    amtCollected += this.renters[i].payRent(rent);
+  }
+  return amtCollected;
+};
+
 module.exports = Apartment;
